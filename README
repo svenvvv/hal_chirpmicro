@@ -1,0 +1,4 @@
+# Official driver libraries for TDK CHxxx sensors.
+
+Contains SonicLib v2.1.8, which was ripped out from SmartSonic_HelloChirp_v1.31.0
+archive.

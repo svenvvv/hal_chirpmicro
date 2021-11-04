@@ -1,0 +1,15 @@
+if HAS_SONICLIB
+
+menuconfig SONICLIB_DEBUG
+    bool "SonicLib debug"
+    default 0
+
+menuconfig SONICLIB_NUM_I2C_BUSES
+	int "No. of I2C buses"
+	default 1
+
+menuconfig SONICLIB_NUM_SENSORS
+	int "Max number of sensor devices"
+	default 2
+
+endif # HAS_SONICLIB
