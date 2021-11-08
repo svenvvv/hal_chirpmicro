@@ -12,102 +12,17 @@ menuconfig SONICLIB_NUM_SENSORS
 	int "Max number of sensor devices"
 	default 2
 
-choice SONICLIB_FW
-	prompt "Firmware"
-	default SONICLIB_FW_CH201_GPRSTR_FW
-
-if CH101
-
-config SONICLIB_FW_CH101_FLOOR_FW
-	bool "FLOOR"
-
-config SONICLIB_FW_CH101_GPR_RXOPT_NARROW_WD_FW
-	bool "GPR_RXOPT_NARROW_WD"
-
-config SONICLIB_FW_CH101_GPR_RXOPT_WD
-	bool "GPR_RXOPT_WD"
-
-config SONICLIB_FW_CH101_GPR_RXOPT_WD
-	bool "GPR_RXOPT_WD"
-
-config SONICLIB_FW_CH101_LIQUID_FW
-	bool "LIQUID_FW"
-
-config SONICLIB_FW_CH101_GPR_OPEN_FW
-	bool "GPR_OPEN"
-
-config SONICLIB_FW_CH101_GPR_NARROW_WD_FW
-	bool "GPR_NARROW_WD"
-
-config SONICLIB_FW_CH101_SONICSYNC_MASTER_FW
-	bool "SONICSYNC_MASTER"
-
-config SONICLIB_FW_CH101_GPR_SR_OPEN_FW
-	bool "GPR_SR_OPEN"
-
-config SONICLIB_FW_CH101_GPR_RXOPT_FW
-	bool "GPR_RXOPT"
-
-config SONICLIB_FW_CH101_FINALTEST_FW
-	bool "FINALTEST"
-
-config SONICLIB_FW_CH101_GPR_LOWPWR_FW
-	bool "GPR_LOWPWR"
-
-config SONICLIB_FW_CH101_GPR_FW
-	bool "GPR"
-
-config SONICLIB_FW_CH101_GPR_SR_WD_FW
-	bool "GPR_SR_WD"
-
-config SONICLIB_FW_CH101_GPR_WD_FW
-	bool "GPR_WD"
-
-config SONICLIB_FW_CH101_SONICSYNC_SLAVE_FW
-	bool "SONICSYNC_SLAVE"
-
-config SONICLIB_FW_CH101_GPR_RXOPT_NARROW_FW
-	bool "GPR_RXOPT_NARROW_FW"
-
-config SONICLIB_FW_CH101_GPR_SR_NARROW_FW
-	bool "GPR_SR_NARROW"
-
-config SONICLIB_FW_CH101_GPR_SR_FW
-	bool "GPR_SR"
-
-config SONICLIB_FW_CH101_GPR_NARROW_FW
-	bool "GPR_NARROW"
-
-config SONICLIB_FW_CH101_GPR_SR_NARROW_WD_FW
-	bool "GPR_SR_NARROW_WD"
-
-config SONICLIB_FW_CH101_GPPC_FW
-	bool "GPPC"
-
-endif # CH101
-
-if CH201
-
-config SONICLIB_FW_CH201_GPRSTR_FW
-	bool "GPRSTR"
-
-config SONICLIB_FW_CH201_GPRSTR_WD_FW
-	bool "GPRSTR_WD"
-
-config SONICLIB_FW_CH201_GPRMT_WD_FW
-	bool "GPRMT_WD"
-
-config SONICLIB_FW_CH201_GPRMT_FW
-	bool "GPRMT"
-
-config SONICLIB_FW_CH201_PRESENCE_FW
-	bool "PRESENCE"
-
-config SONICLIB_FW_CH201_FINALTEST_FW
-	bool "FINALTEST"
-
-endif # CH201
-
-endchoice
+menuconfig SONICLIB_FW_PREFIX
+	string "ASIC firmware title prefix"
+    default "ch101_gprstr" if CH101
+    default "ch201_gprstr" if CH201
+	help
+		Firmware to flash onto the sensor ASIC.
+		Expects the initial prefix of the firmware title, for example, to use the
+		GPRSTR firmware with the CH201 sensor, which has two source files
+			* ch201_gprstr.c,
+			* ch201_gprstr_fw.c,
+		and an init function named "ch201_gprstr_init()" you would enter
+		"ch201_gprstr" into this field.
 
 endif # HAS_SONICLIB
